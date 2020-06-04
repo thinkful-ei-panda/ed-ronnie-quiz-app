@@ -2,7 +2,8 @@
 /**
  * Example store structure
  */
-const store =
+const store = {
+  questions :
   [
     {
       question: 'What color is broccoli?',
@@ -44,8 +45,7 @@ const store =
       choice4: 'green',
       correctAnswer: 'green'
     },
-  ]
-const data = {
+  ],
   score: 0,
   index: 0
 }
@@ -55,9 +55,9 @@ const data = {
 /********** TEMPLATE GENERATION FUNCTIONS **********/
 function generateWelcome() {
   return `
-  <h2>Welcome To Our Quiz</h2>
-  <div class="first-button">
-  <button class="btn btn-start">Take The Quiz</button>
+  <div class="wrapper">
+  <h2>Let's See How You Do</h2>
+  <button class="btn btn-start">START</button>
   </div>
   `;
 }
