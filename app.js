@@ -3,7 +3,6 @@
  * Example store structure
  */
 const store = {
-  // 5 or more questions are required
   questions: [
     {
       question: 'What color is broccoli?',
@@ -29,6 +28,8 @@ const store = {
   index: 0,
   score: 0
 };
+
+console.log(store.questions.length - 1);
 
 /********** TEMPLATE GENERATION FUNCTIONS **********/
 function generateWelcome() {
@@ -57,6 +58,7 @@ function generateQuestionForm(store) {
   </form>
 `;
 }
+
 function generateCounter() {
   return `
   <div>
@@ -79,10 +81,11 @@ function generateWrongSlide() {
   <button class="btn btn-submit">NEXT QUESTION</button>
   `;
 }
+
 function generateFinalScore() {
   return `
   <h2>YOU DID IT!</h2>
-  <p>You got ${data.score} out of ${store.length}!</p>
+  <p>You got ${store.score} out of ${store.questions.length}!</p>
   <p>GOOD JOB!</p>
   <button class="btn btn-reset">Take the quiz again :D</button>
   `;
@@ -123,8 +126,28 @@ function renderFinalScore() {
 
 // This function conditionally replaces the contents of the <main> tag based on the state of the store
 /********** EVENT HANDLER FUNCTIONS **********/
-// These functions handle events (submit, click, etc)
+// These functions handle events (submit, etc)
+
+function handleSubmit() {
+  $(main).on('submit', '.btn-submit') {
+    if ()
+  }
+}
+
+function handleNext() {
+  $(main).on('submit', '.btn-next' => {
+    if(store.index = store.questions.length) {
+    renderFinalScore()
+  } else {
+    store.index++;
+    renderQuestionForm();
+    // renderState();
+  }
+}
+}
+
 function startPage() {
   renderGenerateWelcome();
+
 }
 $(startPage());
