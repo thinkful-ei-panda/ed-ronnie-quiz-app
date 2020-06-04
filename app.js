@@ -110,7 +110,7 @@ function renderCorrectSlide() {
   $('main').html(html);
 }
 
-funciton renderWrongSlide() {
+function renderWrongSlide() {
   const html = generateWrongSlide();
   $('main').html(html);
 }
