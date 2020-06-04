@@ -1,18 +1,9 @@
-/* Your styles should be mobile-first and responsive */
-
-/** 
-  * If you are unclear on how to utilize a mobile-first, responsive technique to write your CSS, here is an example: 
-  *
-  * https://github.com/andreacardybailey/responsive_example/blob/master/styles/responsive-base.css 
-  *
-*/
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;700&display=swap");
 main {
   display:flex;
   flex-direction: column;
   width: 100%;
 }
-
 .wrapper, .counter, p{
   display: flex;
   flex-direction: column;
@@ -31,18 +22,15 @@ body {
   flex-direction: column;
   align-self: center;
 }
-
 header h1 {
   flex-direction: column;
   text-align: center;
   font-size: 2.5rem;
 }
-
 h2 {
   align-self: center;
   text-align: center;
 }
-
 .btn {
   width: 50%;
   align-self: center;
