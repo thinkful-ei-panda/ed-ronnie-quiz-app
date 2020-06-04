@@ -8,8 +8,15 @@
 */
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;700&display=swap");
 main {
-  display: flex;
+  
   width: 100%;
+}
+.wrapper{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-self: center;
+  justify-content: center;
 }
 body {
   width:100%;
@@ -19,6 +26,7 @@ body {
   color: white;
   text-align: center;
   flex-direction: column;
+  align-self: center;
 }
 
 header h1 {
@@ -28,8 +36,10 @@ header h1 {
 }
 
 h2 {
+  align-self: center;
   text-align: center;
 }
-button {
-  display: flex;
+button{
+  width: 50%;
+  align-self: center;
 }

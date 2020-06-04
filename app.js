@@ -33,9 +33,9 @@ const store = {
 /********** TEMPLATE GENERATION FUNCTIONS **********/
 function generateWelcome() {
   return `
-  <h2>Welcome To Our Quiz</h2>
-  <div class="first-button">
-  <button class="btn btn-start">Take The Quiz</button>
+  <div class="wrapper">
+  <h2>Let's See How You Do</h2>
+  <button class="btn btn-start">START</button>
   </div>
   `;
 }
