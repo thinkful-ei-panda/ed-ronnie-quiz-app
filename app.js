@@ -2,74 +2,56 @@
 /**
  * Example store structure
  */
-const store =
-  [
+const store = {
+  // 5 or more questions are required
+  questions: [
     {
       question: 'What color is broccoli?',
-      choice1: 'red',
-      choice2: 'orange',
-      choice3: 'pink',
-      choice4: 'green',
+      answers: [
+        'red',
+        'orange',
+        'pink',
+        'green'
+      ],
       correctAnswer: 'green'
     },
     {
-      question: 'What color is broccoli?',
-      choice1: 'red',
-      choice2: 'orange',
-      choice3: 'pink',
-      choice4: 'green',
-      correctAnswer: 'green'
+      question: 'What is the current year?',
+      answers: [
+        '1970',
+        '2015',
+        '2019',
+        '2005'
+      ],
+      correctAnswer: '2019'
     },
-    {
-      question: 'What color is broccoli?',
-      choice1: 'red',
-      choice2: 'orange',
-      choice3: 'pink',
-      choice4: 'green',
-      correctAnswer: 'green'
-    },
-    {
-      question: 'What color is broccoli?',
-      choice1: 'red',
-      choice2: 'orange',
-      choice3: 'pink',
-      choice4: 'green',
-      correctAnswer: 'green'
-    },
-    {
-      question: 'What color is broccoli?',
-      choice1: 'red',
-      choice2: 'orange',
-      choice3: 'pink',
-      choice4: 'green',
-      correctAnswer: 'green'
-    },
-  ]
-const data = {
-  score: 0,
-  index: 0
-}
+  ],
+  index: 0,
+  score: 0
+};
 
 /********** TEMPLATE GENERATION FUNCTIONS **********/
 function generateWelcome() {
   return `
-  <h1>Welcome To Our Quiz</h1>
-  <button class="btn btn-start">Take The Quiz Now</button>
+  <h2>Welcome To Our Quiz</h2>
+  <div class="first-button">
+  <button class="btn btn-start">Take The Quiz</button>
+  </div>
   `;
 }
-function generateQuestion() {
+function generateQuestionForm(store) {
   return `
   <form>
   <fieldset>
     <legend>${store.question}</legend>
-    <input type="radio" id="choice1" name="choice" value="${choice1}" required>
-    <label for="choice1">${choice1}</label>
-    <input type="radio" id="choice2" name="choice" value="${choice2}" required>
-    <label for="choice2">${choice2}</label>
-    <input type="radio" id=choice3 name="choice" value="${choice3}" required>
-    <label for="choice3">${choice3}</label>
-    <input type="radio" id=choice4 name="choice" value="${choice4}" required>
-    <label for="choice3">${choice4}</label>
+    <input type="radio" name="choice" value="${store.choice1}" required>
+    <label for="choice1">${store.choice1}</label>
+    <input type="radio" name="choice" value="${store.choice2}" required>
+    <label for="choice2">${store.choice2}</label>
+    <input type="radio" name="choice" value="${store.choice3}" required>
+    <label for="choice3">${store.choice3}</label>
+    <input type="radio" name="choice" value="${store.choice4}" required>
+    <label for="choice4">${store.choice4}</label>
     <button class="btn btn-submit">Submit</button>
   </fieldset>
   </form>
@@ -83,6 +65,7 @@ function generateCounter() {
   </div>
   `;
 }
+
 function generateCorrectSlide() {
   return `
   <h2>YOU ARE CORRECT!</h2>
@@ -92,23 +75,56 @@ function generateCorrectSlide() {
 function generateWrongSlide() {
   return `
   <h2>YOU ARE WRONG!</h2>
+  <p>The correct answer was ${store.correctAnswer}</p>
   <button class="btn btn-submit">NEXT QUESTION</button>
   `;
 }
-
-function renderQuestion() {
-  // render the shopping list in the DOM
-  console.log('`generateQuestion` ran');
-  const quizQuestionString = generateQuestion(store);
-  // insert that HTML into the DOM
-  $('main').html(quizQuestionString);
+function generateFinalScore() {
+  return `
+  <h2>YOU DID IT!</h2>
+  <p>You got ${data.score} out of ${store.length}!</p>
+  <p>GOOD JOB!</p>
+  <button class="btn btn-reset">Take the quiz again :D</button>
+  `;
 }
+
 // These functions return HTML templates
 /********** RENDER FUNCTION(S) **********/
+function renderGenerateWelcome() {
+  const html = generateWelcome();
+  $('main').html(html);
+}
+
+function renderCounter() {
+  const html = generateCounter();
+  $('main').html(html);
+}
+
+function renderQuestionForm() {
+  const html = generateQuestionForm();
+  $('main').html(html);
+}
+
+function renderCorrectSlide() {
+  const html = generateCorrectSlide();
+  $('main').html(html);
+}
+
+funciton renderWrongSlide() {
+  const html = generateWrongSlide();
+  $('main').html(html);
+}
+
+function renderFinalScore() {
+  const html = generateFinalScore()
+  $('main').html(html);
+}
+
+
 // This function conditionally replaces the contents of the <main> tag based on the state of the store
 /********** EVENT HANDLER FUNCTIONS **********/
 // These functions handle events (submit, click, etc)
-function handleQuiz() {
-  renderQuestion();
+function startPage() {
+  renderGenerateWelcome();
 }
-$(handleQuiz());
+$(startPage());
