@@ -3,55 +3,33 @@
  * Example store structure
  */
 const store = {
-  questions :
-  [
+  // 5 or more questions are required
+  questions: [
     {
       question: 'What color is broccoli?',
-      choice1: 'red',
-      choice2: 'orange',
-      choice3: 'pink',
-      choice4: 'green',
+      answers: [
+        'red',
+        'orange',
+        'pink',
+        'green'
+      ],
       correctAnswer: 'green'
     },
     {
-      question: 'What color is broccoli?',
-      choice1: 'red',
-      choice2: 'orange',
-      choice3: 'pink',
-      choice4: 'green',
-      correctAnswer: 'green'
-    },
-    {
-      question: 'What color is broccoli?',
-      choice1: 'red',
-      choice2: 'orange',
-      choice3: 'pink',
-      choice4: 'green',
-      correctAnswer: 'green'
-    },
-    {
-      question: 'What color is broccoli?',
-      choice1: 'red',
-      choice2: 'orange',
-      choice3: 'pink',
-      choice4: 'green',
-      correctAnswer: 'green'
-    },
-    {
-      question: 'What color is broccoli?',
-      choice1: 'red',
-      choice2: 'orange',
-      choice3: 'pink',
-      choice4: 'green',
-      correctAnswer: 'green'
+      question: 'What is the current year?',
+      answers: [
+        '1970',
+        '2015',
+        '2019',
+        '2005'
+      ],
+      correctAnswer: '2019'
     },
   ],
-  score: 0,
-  index: 0
-}
-// store.questions.forEach(element => {
-//   console.log(`${element.question}`);
-// })
+  index: 0,
+  score: 0
+};
+
 /********** TEMPLATE GENERATION FUNCTIONS **********/
 function generateWelcome() {
   return `
@@ -87,6 +65,7 @@ function generateCounter() {
   </div>
   `;
 }
+
 function generateCorrectSlide() {
   return `
   <h2>YOU ARE CORRECT!</h2>
@@ -100,7 +79,7 @@ function generateWrongSlide() {
   <button class="btn btn-submit">NEXT QUESTION</button>
   `;
 }
-function generateFinalScore(){
+function generateFinalScore() {
   return `
   <h2>YOU DID IT!</h2>
   <p>You got ${data.score} out of ${store.length}!</p>
@@ -111,8 +90,33 @@ function generateFinalScore(){
 
 // These functions return HTML templates
 /********** RENDER FUNCTION(S) **********/
-function renderGenerateWelcome(){
+function renderGenerateWelcome() {
   const html = generateWelcome();
+  $('main').html(html);
+}
+
+function renderCounter() {
+  const html = generateCounter();
+  $('main').html(html);
+}
+
+function renderQuestionForm() {
+  const html = generateQuestionForm();
+  $('main').html(html);
+}
+
+function renderCorrectSlide() {
+  const html = generateCorrectSlide();
+  $('main').html(html);
+}
+
+function renderWrongSlide() {
+  const html = generateWrongSlide();
+  $('main').html(html);
+}
+
+function renderFinalScore() {
+  const html = generateFinalScore()
   $('main').html(html);
 }
 
@@ -120,7 +124,7 @@ function renderGenerateWelcome(){
 // This function conditionally replaces the contents of the <main> tag based on the state of the store
 /********** EVENT HANDLER FUNCTIONS **********/
 // These functions handle events (submit, click, etc)
-function startPage(){
+function startPage() {
   renderGenerateWelcome();
 }
 $(startPage());
