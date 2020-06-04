@@ -56,7 +56,7 @@ function generateWelcome() {
   return `
   <div class="wrapper">
   <h2>Let's See How You Do</h2>
-  <button type="submit" class="btn btn-start">START</button>
+  <button class="btn btn-start">START</button>
   </div>
   `;
 }
@@ -70,23 +70,33 @@ function generateQuestionForm() {
   <fieldset>
     <legend>${store['questions'][store.i].question}</legend>
 
+    <label for="choice1">
     <input type="radio" name="answers" value="${store['questions'][store.i].answers[0]}" required>
-    <label for="choice1">${store['questions'][store.i].answers[0]}</label>
+    ${store['questions'][store.i].answers[0]}
+    </label>
 
+    <label for="choice2">
     <input type="radio" name="answers" value="${store['questions'][store.i].answers[1]}" required>
-    <label for="choice2">${store['questions'][store.i].answers[1]}</label>
+    ${store['questions'][store.i].answers[1]}
+    </label>
 
+    <label for="choice3">
     <input type="radio" name="answers" value="${store['questions'][store.i].answers[2]}" required>
-    <label for="choice3">${store['questions'][store.i].answers[2]}</label>
+    ${store['questions'][store.i].answers[2]}
+    </label>
 
+    <label for="choice4">
     <input type="radio" name="answers" value="${store['questions'][store.i].answers[3]}" required>
-    <label for="choice4">${store['questions'][store.i].answers[3]}</label>
+    ${store['questions'][store.i].answers[3]}
+    </label>
 
-    <button type="submit" class="btn btn-submit">Submit</button>
+    <button class="btn btn-submit">Submit</button>
   </fieldset>
   </form>
   </div>
   `;
+  console.log(input[name = "answers"]);
+
 }
 
 function generateCounter() {
@@ -110,10 +120,11 @@ function generateWrongSlide() {
   return `
   <div class="wrapper">
     <h2>YOU ARE WRONG!</h2>
-    <p>The correct answer was ${store.questions[store.i].correctAnswer}</p>
+    <p>The correct answer was ${store.questions[i].correctAnswer}</p>
     <button class="btn btn-next">NEXT QUESTION</button>
   </div>
   `;
+
 }
 
 function generateFinalScore() {
