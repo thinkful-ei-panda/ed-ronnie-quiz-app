@@ -93,7 +93,8 @@ function generateQuestionForm() {
     <input type="radio" name="answers" value="${store.questions[store.i].answers[3]}"required>
     </label>
 
-    <button class="btn btn-submit">Submit</button>
+    <input type = "submit" class="btn btn-submit">
+
   </fieldset>
   </form>
   </div>
@@ -187,9 +188,8 @@ function handleStart() {
 }
 
 function handleSubmit() {
-  // only if ($('input[name="answers"]:checked')){
-  $('main').on('click', '.btn-submit', () => {
-    if ($('input[name="answers"]:checked').val() === store.questions[store.i].correctAnswer) 
+  $('main').on('submit', () => {
+   if ($('input[name="answers"]:checked').val() === store.questions[store.i].correctAnswer) 
     {
       store.score++;
       renderCorrectSlide();
@@ -197,9 +197,8 @@ function handleSubmit() {
       renderWrongSlide();
     }
     renderCounter();
-  });
+  })
 }
-
 function handleNext() { 
   $('main').on('click', '.btn-next', () => {
 
@@ -215,12 +214,11 @@ function handleNext() {
 }
 
 function handleRestart() {
-  $('main').on('click', 'btn-reset', () => {
+  $('main').on('click', '.btn-reset', () => {
     store.index = 0;
     store.score = 0;
     store.i = 0;
     renderGenerateWelcome();
-
   });
 }
 
