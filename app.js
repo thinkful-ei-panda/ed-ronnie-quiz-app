@@ -46,7 +46,8 @@ const store = {
     },
   ],
   index: 0,
-  score: 0
+  score: 0,
+  i: 0
 };
 
 const currentQuestion = store['questions'][i].question
@@ -65,7 +66,10 @@ function generateWelcome() {
   </div>
   `;
 }
-function generateQuestionForm(store) {
+
+
+function generateQuestionForm() {
+  // console.log(store['questions'][store.i].question);
   return `
   <div class="wrapper">
   <form>
@@ -83,11 +87,14 @@ function generateQuestionForm(store) {
   </fieldset>
   </form>
   </div>
-`
-};
+  `;
+  console.log(input[name = "answers"]);
+
+}
+
 function generateCounter() {
   return `
-  <div class= 'counter'>
+  <div class = "counter">
     <p>question:${store.index + 1} of ${store.questions.length}</p>
     <p>Current Score is ${store.score} out of ${store.questions.length}</p>
   </div>
@@ -110,7 +117,9 @@ function generateWrongSlide() {
   <button class="btn btn-next">NEXT QUESTION</button>
   </div>
   `;
+
 }
+
 function generateFinalScore() {
   return `
   <div class= "wrapper">
@@ -157,8 +166,45 @@ function renderFinalScore() {
 
 // This function conditionally replaces the contents of the <main> tag based on the state of the store
 /********** EVENT HANDLER FUNCTIONS **********/
-// These functions handle events (submit, click, etc)
+// These functions handle events (submit, etc)
+
+function handleStart() {
+  $('main').on('click', '.btn-start', () => {
+    // event.preventDefault();
+    renderCounter();
+    renderQuestionForm();
+  });
+}
+
+function handleSubmit() {
+  $('main').on('click', '.btn-submit', () => {
+    if ($('input[name="answers"]:checked').val() === store['questions'][store.i].correctAnswer) {
+      store.score++;
+      renderCorrectSlide();
+    } else {
+      renderWrongSlide();
+    }
+    renderCounter();
+  });
+}
+
+function handleNext() {
+  $('main').on('submit', '.btn-next', () => {
+    if (store.index = store.questions.length) {
+      renderFinalScore()
+    } else {
+      store.index++;
+      store.i++;
+      renderQuestionForm();
+      // renderState();
+    }
+  });
+}
+
 function startPage() {
   renderGenerateWelcome();
+  handleStart();
+  handleSubmit();
+  handleNext();
 }
 $(startPage());
