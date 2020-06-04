@@ -49,9 +49,7 @@ const data = {
   score: 0,
   index: 0
 }
-// store.questions.forEach(element => {
-//   console.log(`${element.question}`);
-// })
+
 /********** TEMPLATE GENERATION FUNCTIONS **********/
 function generateWelcome() {
   return `
@@ -59,7 +57,7 @@ function generateWelcome() {
   <button class="btn btn-start">Take The Quiz Now</button>
   `;
 }
-function generateQuestion(store) {
+function generateQuestion() {
   return `
   <form>
   <fieldset>
@@ -97,22 +95,7 @@ function generateWrongSlide() {
   <button class="btn btn-submit">NEXT QUESTION</button>
   `;
 }
-// function generateQuestionString(questionList) {
-//   console.log("Generating shopping list element");
-//   const items = questionList.map((store) => generateQuestion(store));
-//   return items.join("");
-// }
-// {
-//   $(function () {
-//     $('input[name="test"]').on('click', function () {
-//       if ($(this).val() == 'ans') {
-//         $('.exp').show(); $('.red').hide();
-//       } else {
-//         $('.exp').hide(); $('.red').show();
-//       }
-//     })
-//   });
-// }
+
 function renderQuestion() {
   // render the shopping list in the DOM
   console.log('`generateQuestion` ran');
