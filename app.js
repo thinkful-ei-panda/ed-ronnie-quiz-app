@@ -46,40 +46,49 @@ const store = {
     },
   ],
   index: 0,
-  score: 0
+  score: 0,
+  i: 0
 };
 
-console.log(store.questions.length - 1);
 
 /********** TEMPLATE GENERATION FUNCTIONS **********/
 function generateWelcome() {
   return `
   <div class="wrapper">
   <h2>Let's See How You Do</h2>
-  <button class="btn btn-start">START</button>
+  <button type="submit" class="btn btn-start">START</button>
   </div>
   `;
 }
-function generateQuestionForm(store) {
+
+
+function generateQuestionForm() {
+  // console.log(store['questions'][store.i].question);
   return `
   <div class="wrapper">
   <form>
   <fieldset>
-    <legend>${store['questions'][i].question}</legend>
-    <input type="radio" name="answers" value="${store['questions'][i].answers[0]}" required>
-    <label for="choice1">${store['questions'][i].answers[0]}</label>
-    <input type="radio" name="answers" value="${store['questions'][i].answers[1]}" required>
-    <label for="choice2">${store['questions'][i].answers[1]}</label>
-    <input type="radio" name="answers" value="${store['questions'][i].answers[2]}" required>
-    <label for="choice3">${store['questions'][i].answers[2]}</label>
-    <input type="radio" name="answers" value="${store['questions'][i].answers[3]}" required>
-    <label for="choice4">${store['questions'][i].answers[3]}</label>
-    <button class="btn btn-submit">Submit</button>
+    <legend>${store['questions'][store.i].question}</legend>
+
+    <input type="radio" name="answers" value="${store['questions'][store.i].answers[0]}" required>
+    <label for="choice1">${store['questions'][store.i].answers[0]}</label>
+
+    <input type="radio" name="answers" value="${store['questions'][store.i].answers[1]}" required>
+    <label for="choice2">${store['questions'][store.i].answers[1]}</label>
+
+    <input type="radio" name="answers" value="${store['questions'][store.i].answers[2]}" required>
+    <label for="choice3">${store['questions'][store.i].answers[2]}</label>
+
+    <input type="radio" name="answers" value="${store['questions'][store.i].answers[3]}" required>
+    <label for="choice4">${store['questions'][store.i].answers[3]}</label>
+
+    <button type="submit" class="btn btn-submit">Submit</button>
   </fieldset>
   </form>
   </div>
-`
-};
+  `;
+}
+
 function generateCounter() {
   return `
   <div class = "counter">
@@ -100,9 +109,9 @@ function generateCorrectSlide() {
 function generateWrongSlide() {
   return `
   <div class="wrapper">
-  <h2>YOU ARE WRONG!</h2>
-  <p>The correct answer was ${store.correctAnswer}</p>
-  <button class="btn btn-next">NEXT QUESTION</button>
+    <h2>YOU ARE WRONG!</h2>
+    <p>The correct answer was ${store.questions[store.i].correctAnswer}</p>
+    <button class="btn btn-next">NEXT QUESTION</button>
   </div>
   `;
 }
@@ -155,26 +164,43 @@ function renderFinalScore() {
 /********** EVENT HANDLER FUNCTIONS **********/
 // These functions handle events (submit, etc)
 
+function handleStart() {
+  $('main').on('click', '.btn-start', () => {
+    // event.preventDefault();
+    renderCounter();
+    renderQuestionForm();
+  });
+}
+
 function handleSubmit() {
-  $(main).on('submit', '.btn-submit') {
-    if ()
-  }
+  $('main').on('click', '.btn-submit', () => {
+    if ($('input[name="answers"]:checked').val() === store['questions'][store.i].correctAnswer) {
+      store.score++;
+      renderCorrectSlide();
+    } else {
+      renderWrongSlide();
+    }
+    renderCounter();
+  });
 }
 
 function handleNext() {
-  $(main).on('submit', '.btn-next' => {
-    if(store.index = store.questions.length) {
-    renderFinalScore()
-  } else {
-    store.index++;
-    renderQuestionForm();
-    // renderState();
-  }
-}
+  $('main').on('submit', '.btn-next', () => {
+    if (store.index = store.questions.length) {
+      renderFinalScore()
+    } else {
+      store.index++;
+      store.i++;
+      renderQuestionForm();
+      // renderState();
+    }
+  });
 }
 
 function startPage() {
   renderGenerateWelcome();
-
+  handleStart();
+  handleSubmit();
+  handleNext();
 }
 $(startPage());
