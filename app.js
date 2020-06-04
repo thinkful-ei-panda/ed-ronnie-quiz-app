@@ -61,38 +61,50 @@ function generateWelcome() {
   `;
 }
 
-
 function generateQuestionForm() {
-
-
-  // console.log(store['questions'][store.i].question);
   return `
+  <div class="counter">
+    <p>question:${store.index + 1} of ${store.questions.length}</p>
+    <p>Current Score is ${store.score} out of ${store.questions.length}</p>
+  </div>
+
   <div class="wrapper">
   <form>
   <fieldset>
-    <legend>${store['questions'][i].question}</legend>
-    <input type="radio" name="answers" value="${store['questions'][i].answers[0]}" required>
-    <label for="choice1">${store['questions'][i].answers[0]}</label>
-    <input type="radio" name="answers" value="${store['questions'][i].answers[1]}" required>
-    <label for="choice2">${store['questions'][i].answers[1]}</label>
-    <input type="radio" name="answers" value="${store['questions'][i].answers[2]}" required>
-    <label for="choice3">${store['questions'][i].answers[2]}</label>
-    <input type="radio" name="answers" value="${store['questions'][i].answers[3]}" required>
-    <label for="choice4">${store['questions'][i].answers[3]}</label>
+    <legend>${store.questions[store.i].question}</legend>
+
+    <label for="choice1">
+    <input type="radio" name="answers" value="${store.questions[store.i].answers[0]}" required>
+    ${store.questions[store.i].answers[0]}
+    </label>
+
+    <label for="choice2">
+    <input type="radio" name="answers" value="${store.questions[store.i].answers[1]}" required>
+    ${store.questions[store.i].answers[1]}
+    </label>
+
+    <label for="choice3">
+    <input type="radio" name="answers" value="${store.questions[store.i].answers[2]}" required>
+    ${store.questions[store.i].answers[2]}
+    </label>
+
+    <label for="choice4">
+    <input type="radio" name="answers" value="${store.questions[store.i].answers[3]}" required>
+    ${store.questions[store.i].answers[3]}
+    </label>
+
     <button class="btn btn-submit">Submit</button>
   </fieldset>
   </form>
   </div>
   `;
-  
-  console.log(input[name = "answers"]);
 
 }
 
 
 function generateCounter() {
   return `
-  <div class = "counter">
+  <div class="counter">
     <p>question:${store.index + 1} of ${store.questions.length}</p>
     <p>Current Score is ${store.score} out of ${store.questions.length}</p>
   </div>
@@ -110,9 +122,9 @@ function generateCorrectSlide() {
 function generateWrongSlide() {
   return `
   <div class="wrapper">
-  <h2>YOU ARE WRONG!</h2>
-  <p>The correct answer was ${data.theAnswer}</p>
-  <button class="btn btn-next">NEXT QUESTION</button>
+    <h2>YOU ARE WRONG!</h2>
+    <p>The correct answer was ${store.questions[store.i].correctAnswer}</p>
+    <button class="btn btn-next">NEXT QUESTION</button>
   </div>
   `;
 
@@ -138,7 +150,7 @@ function renderGenerateWelcome() {
 
 function renderCounter() {
   const html = generateCounter();
-  $('main').html(html);
+  $('main').append(html);
 }
 
 function renderQuestionForm() {
@@ -157,7 +169,7 @@ function renderWrongSlide() {
 }
 
 function renderFinalScore() {
-  const html = generateFinalScore()
+  const html = generateFinalScore();
   $('main').html(html);
 }
 
@@ -169,14 +181,14 @@ function renderFinalScore() {
 function handleStart() {
   $('main').on('click', '.btn-start', () => {
     // event.preventDefault();
-    renderCounter();
+
     renderQuestionForm();
   });
 }
 
 function handleSubmit() {
   $('main').on('click', '.btn-submit', () => {
-    if ($('#radio_button').is(':checked') === data.theAnswer) {
+    if ($('input[name="answers"]:checked').val() === store.questions[store.i].correctAnswer) {
       store.score++;
       renderCorrectSlide();
     } else {
@@ -187,15 +199,25 @@ function handleSubmit() {
 }
 
 function handleNext() {
-  $('main').on('submit', '.btn-next', () => {
-    if (store.index = store.questions.length) {
-      renderFinalScore()
+  $('main').on('click', '.btn-next', () => {
+    if (store.index >= store.questions.length - 1) {
+      renderFinalScore();
     } else {
       store.index++;
       store.i++;
       renderQuestionForm();
-      // renderState();
     }
+  });
+
+}
+
+function handleRestart() {
+  $('main').on('click', 'btn-reset', () => {
+    store.index = 0;
+    store.score = 0;
+    store.i = 0;
+    renderGenerateWelcome();
+
   });
 }
 
@@ -204,5 +226,7 @@ function startPage() {
   handleStart();
   handleSubmit();
   handleNext();
+  handleRestart();
 }
+
 $(startPage());
