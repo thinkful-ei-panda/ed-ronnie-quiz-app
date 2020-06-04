@@ -24,6 +24,26 @@ const store = {
       ],
       correctAnswer: '2019'
     },
+    {
+      question: 'What color is broccoli?',
+      answers: [
+        'red',
+        'orange',
+        'pink',
+        'green'
+      ],
+      correctAnswer: 'green'
+    },
+    {
+      question: 'What is the current year?',
+      answers: [
+        '1970',
+        '2015',
+        '2019',
+        '2005'
+      ],
+      correctAnswer: '2019'
+    },
   ],
   index: 0,
   score: 0
@@ -42,52 +62,59 @@ function generateWelcome() {
 }
 function generateQuestionForm(store) {
   return `
+  <div class="wrapper">
   <form>
   <fieldset>
-    <legend>${store.question}</legend>
-    <input type="radio" name="choice" value="${store.choice1}" required>
-    <label for="choice1">${store.choice1}</label>
-    <input type="radio" name="choice" value="${store.choice2}" required>
-    <label for="choice2">${store.choice2}</label>
-    <input type="radio" name="choice" value="${store.choice3}" required>
-    <label for="choice3">${store.choice3}</label>
-    <input type="radio" name="choice" value="${store.choice4}" required>
-    <label for="choice4">${store.choice4}</label>
+    <legend>${store['questions'][i].question}</legend>
+    <input type="radio" name="answers" value="${store['questions'][i].answers[0]}" required>
+    <label for="choice1">${store['questions'][i].answers[0]}</label>
+    <input type="radio" name="answers" value="${store['questions'][i].answers[1]}" required>
+    <label for="choice2">${store['questions'][i].answers[1]}</label>
+    <input type="radio" name="answers" value="${store['questions'][i].answers[2]}" required>
+    <label for="choice3">${store['questions'][i].answers[2]}</label>
+    <input type="radio" name="answers" value="${store['questions'][i].answers[3]}" required>
+    <label for="choice4">${store['questions'][i].answers[3]}</label>
     <button class="btn btn-submit">Submit</button>
   </fieldset>
   </form>
-`;
-}
-
+  </div>
+`
+};
 function generateCounter() {
   return `
-  <div>
-    <p>question:${data.index + 1} of ${store.length}</p>
-    <p>Current Score is ${data.score} out of ${store.length}</p>
+  <div class = "counter">
+    <p>question:${store.index + 1} of ${store.questions.length}</p>
+    <p>Current Score is ${store.score} out of ${store.questions.length}</p>
   </div>
   `;
 }
 
 function generateCorrectSlide() {
   return `
+  <div class="wrapper">
   <h2>YOU ARE CORRECT!</h2>
-  <button class="btn btn-submit">NEXT QUESTION</button>
+  <button class="btn btn-next">NEXT QUESTION</button>
+  </div>
   `;
 }
 function generateWrongSlide() {
   return `
+  <div class="wrapper">
   <h2>YOU ARE WRONG!</h2>
   <p>The correct answer was ${store.correctAnswer}</p>
-  <button class="btn btn-submit">NEXT QUESTION</button>
+  <button class="btn btn-next">NEXT QUESTION</button>
+  </div>
   `;
 }
 
 function generateFinalScore() {
   return `
+  <div class= "wrapper">
   <h2>YOU DID IT!</h2>
   <p>You got ${store.score} out of ${store.questions.length}!</p>
   <p>GOOD JOB!</p>
   <button class="btn btn-reset">Take the quiz again :D</button>
+  </div>
   `;
 }
 
