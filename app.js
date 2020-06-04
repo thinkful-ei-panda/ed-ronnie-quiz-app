@@ -49,6 +49,13 @@ const store = {
   score: 0
 };
 
+const currentQuestion = store['questions'][i].question
+const option1 = store['questions'][i].answers[0];
+const option2 = store['questions'][i].answers[1];
+const option3 = store['questions'][i].answers[2];
+const option4 = store['questions'][i].answers[3];
+const theAnswer = store.questions[i].correctAnswer;
+
 /********** TEMPLATE GENERATION FUNCTIONS **********/
 function generateWelcome() {
   return `
@@ -63,15 +70,15 @@ function generateQuestionForm(store) {
   <div class="wrapper">
   <form>
   <fieldset>
-    <legend>${store['questions'][i].question}</legend>
-    <input type="radio" name="answers" value="${store['questions'][i].answers[0]}" required>
-    <label for="choice1">${store['questions'][i].answers[0]}</label>
-    <input type="radio" name="answers" value="${store['questions'][i].answers[1]}" required>
-    <label for="choice2">${store['questions'][i].answers[1]}</label>
-    <input type="radio" name="answers" value="${store['questions'][i].answers[2]}" required>
-    <label for="choice3">${store['questions'][i].answers[2]}</label>
-    <input type="radio" name="answers" value="${store['questions'][i].answers[3]}" required>
-    <label for="choice4">${store['questions'][i].answers[3]}</label>
+    <legend>${currentQuestion}</legend>
+    <input type="radio" name="answers" value="${option1}" required>
+    <label for="choice1">${option1}</label>
+    <input type="radio" name="answers" value="${option2}" required>
+    <label for="choice2">${option2}</label>
+    <input type="radio" name="answers" value="${option3}" required>
+    <label for="choice3">${option3}</label>
+    <input type="radio" name="answers" value="${option4}" required>
+    <label for="choice4">${option4}</label>
     <button class="btn btn-submit">Submit</button>
   </fieldset>
   </form>
@@ -99,7 +106,7 @@ function generateWrongSlide() {
   return `
   <div class="wrapper">
   <h2>YOU ARE WRONG!</h2>
-  <p>The correct answer was ${store.correctAnswer}</p>
+  <p>The correct answer was ${theAnswer}</p>
   <button class="btn btn-next">NEXT QUESTION</button>
   </div>
   `;
