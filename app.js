@@ -50,6 +50,12 @@ const store = {
   i: 0
 };
 
+const currentQuestion = store['questions'][i].question
+const option1 = store['questions'][i].answers[0];
+const option2 = store['questions'][i].answers[1];
+const option3 = store['questions'][i].answers[2];
+const option4 = store['questions'][i].answers[3];
+const theAnswer = store.questions[i].correctAnswer;
 
 /********** TEMPLATE GENERATION FUNCTIONS **********/
 function generateWelcome() {
