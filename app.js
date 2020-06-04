@@ -47,15 +47,8 @@ const store = {
   ],
   index: 0,
   score: 0,
-  i: 0
+  i: 0,
 };
-
-const currentQuestion = store['questions'][i].question
-const option1 = store['questions'][i].answers[0];
-const option2 = store['questions'][i].answers[1];
-const option3 = store['questions'][i].answers[2];
-const option4 = store['questions'][i].answers[3];
-const theAnswer = store.questions[i].correctAnswer;
 
 /********** TEMPLATE GENERATION FUNCTIONS **********/
 function generateWelcome() {
@@ -76,7 +69,6 @@ function generateQuestionForm() {
 
   <div class="wrapper">
   <form>
-  <fieldset>
     <legend>${store.questions[store.i].question}</legend>
 
     <label for="choice1">
@@ -85,22 +77,21 @@ function generateQuestionForm() {
     </label>
 
     <label for="choice2">
-    <input type="radio" name="answers" value="${store.questions[store.i].answers[1]}" required>
+    <input type="radio" name="answers" value="${store.questions[store.i].answers[1]}" >
     ${store.questions[store.i].answers[1]}
     </label>
 
     <label for="choice3">
-    <input type="radio" name="answers" value="${store.questions[store.i].answers[2]}" required>
+    <input type="radio" name="answers" value="${store.questions[store.i].answers[2]}" >
     ${store.questions[store.i].answers[2]}
     </label>
 
     <label for="choice4">
-    <input type="radio" name="answers" value="${store.questions[store.i].answers[3]}" required>
+    <input type="radio" name="answers" value="${store.questions[store.i].answers[3]}" >
     ${store.questions[store.i].answers[3]}
     </label>
 
-    <button class="btn btn-submit">Submit</button>
-  </fieldset>
+    <input type="submit" class="btn btn-submit">
   </form>
   </div>
   `;
@@ -185,14 +176,14 @@ function renderFinalScore() {
 
 function handleStart() {
   $('main').on('click', '.btn-start', () => {
-    // event.preventDefault();
+    event.preventDefault();
 
     renderQuestionForm();
   });
 }
 
 function handleSubmit() {
-  $('main').on('click', '.btn-submit', () => {
+  $('main').on('submit', () => {
     if ($('input[name="answers"]:checked').val() === store.questions[store.i].correctAnswer) {
       store.score++;
       renderCorrectSlide();
@@ -202,6 +193,7 @@ function handleSubmit() {
     renderCounter();
   });
 }
+
 
 function handleNext() {
   $('main').on('click', '.btn-next', () => {
@@ -213,16 +205,14 @@ function handleNext() {
       renderQuestionForm();
     }
   });
-
 }
 
 function handleRestart() {
-  $('main').on('click', 'btn-reset', () => {
+  $('main').on('click', '.btn-reset', () => {
     store.index = 0;
     store.score = 0;
     store.i = 0;
     renderGenerateWelcome();
-
   });
 }
 
