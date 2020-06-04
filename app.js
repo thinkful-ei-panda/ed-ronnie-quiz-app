@@ -50,12 +50,6 @@ const store = {
   i: 0
 };
 
-const currentQuestion = store['questions'][i].question
-const option1 = store['questions'][i].answers[0];
-const option2 = store['questions'][i].answers[1];
-const option3 = store['questions'][i].answers[2];
-const option4 = store['questions'][i].answers[3];
-const theAnswer = store.questions[i].correctAnswer;
 
 /********** TEMPLATE GENERATION FUNCTIONS **********/
 function generateWelcome() {
@@ -69,28 +63,32 @@ function generateWelcome() {
 
 
 function generateQuestionForm() {
+
+
   // console.log(store['questions'][store.i].question);
   return `
   <div class="wrapper">
   <form>
   <fieldset>
-    <legend>${currentQuestion}</legend>
-    <input type="radio" name="answers" value="${option1}" required>
-    <label for="choice1">${option1}</label>
-    <input type="radio" name="answers" value="${option2}" required>
-    <label for="choice2">${option2}</label>
-    <input type="radio" name="answers" value="${option3}" required>
-    <label for="choice3">${option3}</label>
-    <input type="radio" name="answers" value="${option4}" required>
-    <label for="choice4">${option4}</label>
+    <legend>${store['questions'][i].question}</legend>
+    <input type="radio" name="answers" value="${store['questions'][i].answers[0]}" required>
+    <label for="choice1">${store['questions'][i].answers[0]}</label>
+    <input type="radio" name="answers" value="${store['questions'][i].answers[1]}" required>
+    <label for="choice2">${store['questions'][i].answers[1]}</label>
+    <input type="radio" name="answers" value="${store['questions'][i].answers[2]}" required>
+    <label for="choice3">${store['questions'][i].answers[2]}</label>
+    <input type="radio" name="answers" value="${store['questions'][i].answers[3]}" required>
+    <label for="choice4">${store['questions'][i].answers[3]}</label>
     <button class="btn btn-submit">Submit</button>
   </fieldset>
   </form>
   </div>
   `;
+  
   console.log(input[name = "answers"]);
 
 }
+
 
 function generateCounter() {
   return `
@@ -113,7 +111,7 @@ function generateWrongSlide() {
   return `
   <div class="wrapper">
   <h2>YOU ARE WRONG!</h2>
-  <p>The correct answer was ${theAnswer}</p>
+  <p>The correct answer was ${data.theAnswer}</p>
   <button class="btn btn-next">NEXT QUESTION</button>
   </div>
   `;
@@ -178,7 +176,7 @@ function handleStart() {
 
 function handleSubmit() {
   $('main').on('click', '.btn-submit', () => {
-    if ($('input[name="answers"]:checked').val() === store['questions'][store.i].correctAnswer) {
+    if ($('#radio_button').is(':checked') === data.theAnswer) {
       store.score++;
       renderCorrectSlide();
     } else {
