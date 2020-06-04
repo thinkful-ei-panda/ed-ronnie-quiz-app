@@ -74,23 +74,23 @@ function generateQuestionForm() {
     <legend>${store.questions[store.i].question}</legend>
 
     <label for="choice1">
-    <input type="radio" name="answers" value="${store.questions[store.i].answers[0]}" required>
     ${store.questions[store.i].answers[0]}
+    <input type="radio" name="answers" value="${store.questions[store.i].answers[0]}"required>
     </label>
 
     <label for="choice2">
-    <input type="radio" name="answers" value="${store.questions[store.i].answers[1]}" required>
     ${store.questions[store.i].answers[1]}
+    <input type="radio" name="answers" value="${store.questions[store.i].answers[1]}"required>
     </label>
 
     <label for="choice3">
-    <input type="radio" name="answers" value="${store.questions[store.i].answers[2]}" required>
     ${store.questions[store.i].answers[2]}
+    <input type="radio" name="answers" value="${store.questions[store.i].answers[2]}"required>
     </label>
 
     <label for="choice4">
-    <input type="radio" name="answers" value="${store.questions[store.i].answers[3]}" required>
     ${store.questions[store.i].answers[3]}
+    <input type="radio" name="answers" value="${store.questions[store.i].answers[3]}"required>
     </label>
 
     <button class="btn btn-submit">Submit</button>
@@ -187,8 +187,10 @@ function handleStart() {
 }
 
 function handleSubmit() {
+  // only if ($('input[name="answers"]:checked')){
   $('main').on('click', '.btn-submit', () => {
-    if ($('input[name="answers"]:checked').val() === store.questions[store.i].correctAnswer) {
+    if ($('input[name="answers"]:checked').val() === store.questions[store.i].correctAnswer) 
+    {
       store.score++;
       renderCorrectSlide();
     } else {
@@ -198,8 +200,9 @@ function handleSubmit() {
   });
 }
 
-function handleNext() {
+function handleNext() { 
   $('main').on('click', '.btn-next', () => {
+
     if (store.index >= store.questions.length - 1) {
       renderFinalScore();
     } else {
