@@ -5,51 +5,65 @@
 const store = {
   questions: [
     {
-      question: 'What color is broccoli?',
+      question: `<img src="images/glass3.jpeg"></img>
+                <p>Which glass will get full first?</p>`,
       answers: [
-        'red',
-        'orange',
-        'pink',
-        'green'
+        '7',
+        '5',
+        '3',
+        '6'
       ],
-      correctAnswer: 'green'
+      correctAnswer: '3'
     },
     {
-      question: 'What is the current year?',
+      question: `<img src="images/how_many_circles.jpeg"></img>
+      <p>How many circles are there?</p>`,
       answers: [
-        '1970',
-        '2015',
-        '2019',
-        '2005'
+        '0',
+        '7',
+        '1',
+        '16'
       ],
-      correctAnswer: '2019'
+      correctAnswer: '16'
     },
     {
-      question: 'What color is broccoli?',
+      question:  `<img src="images/how-many-animals.jpg"></img>
+      <p>How many animals are there?</p>` ,
       answers: [
-        'red',
-        'orange',
-        'pink',
-        'green'
+        '5',
+        '10',
+        '16',
+        '24'
       ],
-      correctAnswer: 'green'
+      correctAnswer: '16'
     },
     {
-      question: 'What is the current year?',
+      question:  `<img src="images/how-many-triangles.jpg"></img>
+      <p>How many triangles are there?</p>`,
       answers: [
-        '1970',
-        '2015',
-        '2019',
-        '2005'
+        '8',
+        '10',
+        '20',
+        '24'
       ],
-      correctAnswer: '2019'
+      correctAnswer: '24'
+    },
+    {
+      question:  `<img src="images/howmanylegs.jpg"></img>
+      <p>How many legs does the elephant have?</p>`,
+      answers: [
+        '4',
+        '1',
+        '8',
+        '2'
+      ],
+      correctAnswer: '1'
     },
   ],
   index: 0,
   score: 0,
   i: 0,
 };
-
 /********** TEMPLATE GENERATION FUNCTIONS **********/
 function generateWelcome() {
   return `
@@ -59,45 +73,41 @@ function generateWelcome() {
   </div>
   `;
 }
-
 function generateQuestionForm() {
   return `
   <div class="counter">
     <p>question:${store.index + 1} of ${store.questions.length}</p>
     <p>Current Score is ${store.score} out of ${store.questions.length}</p>
   </div>
-
   <div class="wrapper">
   <form>
+  <fieldset>
+  
+  
     <legend>${store.questions[store.i].question}</legend>
-
     <label for="choice1">
     <input type="radio" name="answers" value="${store.questions[store.i].answers[0]}" required>
     ${store.questions[store.i].answers[0]}
     </label>
-
     <label for="choice2">
     <input type="radio" name="answers" value="${store.questions[store.i].answers[1]}" >
     ${store.questions[store.i].answers[1]}
     </label>
-
     <label for="choice3">
     <input type="radio" name="answers" value="${store.questions[store.i].answers[2]}" >
     ${store.questions[store.i].answers[2]}
     </label>
-
     <label for="choice4">
     <input type="radio" name="answers" value="${store.questions[store.i].answers[3]}" >
     ${store.questions[store.i].answers[3]}
     </label>
-
     <input type="submit" class="btn btn-submit">
+  </fieldset>
   </form>
+  
   </div>
   `;
-
 }
-
 function generateCounter() {
   return `
   <div class="counter">
@@ -106,7 +116,6 @@ function generateCounter() {
   </div>
   `;
 }
-
 function generateCorrectSlide() {
   return `
   <div class="wrapper">
@@ -123,9 +132,7 @@ function generateWrongSlide() {
     <button class="btn btn-next">NEXT QUESTION</button>
   </div>
   `;
-
 }
-
 function generateFinalScore() {
   return `
   <div class= "wrapper">
@@ -136,52 +143,41 @@ function generateFinalScore() {
   </div>
   `;
 }
-
 // These functions return HTML templates
 /********** RENDER FUNCTION(S) **********/
 function renderGenerateWelcome() {
   const html = generateWelcome();
   $('main').html(html);
 }
-
 function renderCounter() {
   const html = generateCounter();
   $('main').append(html);
 }
-
 function renderQuestionForm() {
   const html = generateQuestionForm();
   $('main').html(html);
 }
-
 function renderCorrectSlide() {
   const html = generateCorrectSlide();
   $('main').html(html);
 }
-
 function renderWrongSlide() {
   const html = generateWrongSlide();
   $('main').html(html);
 }
-
 function renderFinalScore() {
   const html = generateFinalScore();
   $('main').html(html);
 }
-
-
 // This function conditionally replaces the contents of the <main> tag based on the state of the store
 /********** EVENT HANDLER FUNCTIONS **********/
 // These functions handle events (submit, etc)
-
 function handleStart() {
   $('main').on('click', '.btn-start', () => {
     event.preventDefault();
-
     renderQuestionForm();
   });
 }
-
 function handleSubmit() {
   $('main').on('submit', () => {
     if ($('input[name="answers"]:checked').val() === store.questions[store.i].correctAnswer) {
@@ -191,9 +187,8 @@ function handleSubmit() {
       renderWrongSlide();
     }
     renderCounter();
-  })
+  });
 }
-
 function handleNext() {
   $('main').on('click', '.btn-next', () => {
     if (store.index >= store.questions.length - 1) {
@@ -205,7 +200,6 @@ function handleNext() {
     }
   });
 }
-
 function handleRestart() {
   $('main').on('click', '.btn-reset', () => {
     store.index = 0;
@@ -214,7 +208,6 @@ function handleRestart() {
     renderGenerateWelcome();
   });
 }
-
 function startPage() {
   renderGenerateWelcome();
   handleStart();
@@ -222,5 +215,4 @@ function startPage() {
   handleNext();
   handleRestart();
 }
-
 $(startPage());

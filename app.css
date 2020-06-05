@@ -11,7 +11,18 @@ main {
   align-self: center;
   justify-content: center;
 }
-
+legend{
+  text-align:center ;
+  
+}
+img{
+  display:flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-self: center;
+  text-align: center;
+  width: 50%;
+}
 body {
   width:100%;
   display:flex;
