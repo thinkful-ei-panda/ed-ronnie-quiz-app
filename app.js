@@ -5,8 +5,9 @@
 const store = {
   questions: [
     {
-      question: `<img src="images/glass3.jpeg"></img>
-                <p>Which glass will get full first?</p>`,
+      question: `<h2>Which glass will get full first?</h2>
+      <img src="images/glass3.jpeg"></img>
+                `,
       answers: [
         '7',
         '5',
@@ -16,8 +17,9 @@ const store = {
       correctAnswer: '3'
     },
     {
-      question: `<img src="images/how_many_circles.jpeg"></img>
-      <p>How many circles are there?</p>`,
+      question: `<h2>How many circles are there?</h2>
+      <img src="images/how_many_circles.jpeg"></img>
+      `,
       answers: [
         '0',
         '7',
@@ -27,8 +29,9 @@ const store = {
       correctAnswer: '16'
     },
     {
-      question:  `<img src="images/how-many-animals.jpg"></img>
-      <p>How many animals are there?</p>` ,
+      question:  `<h2>How many animals are there?</h2>
+      <img src="images/how-many-animals.jpg"></img>
+      ` ,
       answers: [
         '5',
         '10',
@@ -38,8 +41,9 @@ const store = {
       correctAnswer: '16'
     },
     {
-      question:  `<img src="images/how-many-triangles.jpg"></img>
-      <p>How many triangles are there?</p>`,
+      question:  `<h2>How many triangles are there?</h2>
+      <img src="images/how-many-triangles.jpg"></img>
+      `,
       answers: [
         '8',
         '10',
@@ -49,8 +53,9 @@ const store = {
       correctAnswer: '24'
     },
     {
-      question:  `<img src="images/howmanylegs.jpg"></img>
-      <p>How many legs does the elephant have?</p>`,
+      question:  `<h2>How many legs does the elephant have?</h2>
+      <img src="images/howmanylegs.jpg"></img>
+      `,
       answers: [
         '4',
         '1',

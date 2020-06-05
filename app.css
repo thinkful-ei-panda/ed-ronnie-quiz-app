@@ -13,15 +13,15 @@ main {
 }
 legend{
   text-align:center ;
-  
+
 }
-img{
+.img{
   display:flex;
   flex-direction: column;
   flex-wrap: wrap;
   align-self: center;
   text-align: center;
-  width: 50%;
+  image-resolution: 50%;
 }
 body {
   width:100%;
