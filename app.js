@@ -6,7 +6,7 @@ const store = {
   questions: [
     {
       question: `<h2>Which glass will get full first?</h2>
-      <img src="images/glass3.jpeg"></img>
+      <img src="images/glass3.jpeg" alt="picture of empty, stacked, connected glasses"></img>
                 `,
       answers: [
         '7',
@@ -18,7 +18,7 @@ const store = {
     },
     {
       question: `<h2>How many circles are there?</h2>
-      <img src="images/how_many_circles.jpeg"></img>
+      <img src="images/how_many_circles.jpeg" alt="optical illusion with monogradient lines"></img>
       `,
       answers: [
         '0',
@@ -29,8 +29,8 @@ const store = {
       correctAnswer: '16'
     },
     {
-      question:  `<h2>How many animals are there?</h2>
-      <img src="images/how-many-animals.jpg"></img>
+      question: `<h2>How many animals are there?</h2>
+      <img src="images/how-many-animals.jpg" alt="black and white image of elephant with superimposed animals"></img>
       ` ,
       answers: [
         '5',
@@ -41,8 +41,8 @@ const store = {
       correctAnswer: '16'
     },
     {
-      question:  `<h2>How many triangles are there?</h2>
-      <img src="images/how-many-triangles.jpg"></img>
+      question: `<h2>How many triangles are there?</h2>
+      <img src="images/how-many-triangles.jpg" alt="big triangle filled with parallelograms"></img>
       `,
       answers: [
         '8',
@@ -53,8 +53,8 @@ const store = {
       correctAnswer: '24'
     },
     {
-      question:  `<h2>How many legs does the elephant have?</h2>
-      <img src="images/howmanylegs.jpg"></img>
+      question: `<h2>How many legs does the elephant have?</h2>
+      <img src="images/howmanylegs.jpg" alt="elephant legs optical illusion"></img>
       `,
       answers: [
         '4',
@@ -81,7 +81,7 @@ function generateWelcome() {
 function generateQuestionForm() {
   return `
   <div class="counter">
-    <p>question:${store.index + 1} of ${store.questions.length}</p>
+    <p>Question: ${store.index + 1} of ${store.questions.length}</p>
     <p>Current Score is ${store.score} out of ${store.questions.length}</p>
   </div>
   <div class="wrapper">
@@ -116,7 +116,7 @@ function generateQuestionForm() {
 function generateCounter() {
   return `
   <div class="counter">
-    <p>question:${store.index + 1} of ${store.questions.length}</p>
+    <p>Question: ${store.index + 1} of ${store.questions.length}</p>
     <p>Current Score is ${store.score} out of ${store.questions.length}</p>
   </div>
   `;
