@@ -114,6 +114,7 @@ function generateQuestionForm() {
   </div>
   `;
 }
+
 function generateCounter() {
   return `
   <div class="counter">
