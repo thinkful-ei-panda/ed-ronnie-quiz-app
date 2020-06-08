@@ -78,32 +78,33 @@ function generateWelcome() {
   </div>
   `;
 }
+
+
 function generateQuestionForm() {
   return `
   <div class="counter">
     <p>Question: ${store.index + 1} of ${store.questions.length}</p>
     <p>Current Score is ${store.score} out of ${store.questions.length}</p>
   </div>
+
   <div class="wrapper">
   <form>
   <fieldset>
-  
-  
     <legend>${store.questions[store.i].question}</legend>
     <label for="choice1">
-    <input type="radio" name="answers" value="${store.questions[store.i].answers[0]}" required>
+    <input type="radio" name="answers" value="${store.questions[store.i].answers[0]}" id="choice1" required>
     ${store.questions[store.i].answers[0]}
     </label>
     <label for="choice2">
-    <input type="radio" name="answers" value="${store.questions[store.i].answers[1]}" >
+    <input type="radio" name="answers" value="${store.questions[store.i].answers[1]}" id="choice2">
     ${store.questions[store.i].answers[1]}
     </label>
     <label for="choice3">
-    <input type="radio" name="answers" value="${store.questions[store.i].answers[2]}" >
+    <input type="radio" name="answers" value="${store.questions[store.i].answers[2]}" id="choice3">
     ${store.questions[store.i].answers[2]}
     </label>
     <label for="choice4">
-    <input type="radio" name="answers" value="${store.questions[store.i].answers[3]}" >
+    <input type="radio" name="answers" value="${store.questions[store.i].answers[3]}" id="choice4">
     ${store.questions[store.i].answers[3]}
     </label>
     <input type="submit" class="btn btn-submit">
